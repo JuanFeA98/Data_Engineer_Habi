@@ -1,30 +1,22 @@
-import yaml
-from datetime import datetime, timedelta
+"Entry point"
+from datetime import datetime
 
-from src import generacion_bases
-
-from Utils.functions import send_message, config_logging
+from Utils.functions import config_logging
+from src import load_records
 
 # Variables Globales
 fecha = datetime.now()
 
-dia = int(str(fecha).replace('-', '')[:8])
-mes = int(str(fecha).replace('-', '')[:6])
-
-# Archivo de configuración
-ruta_config = './config/config.yml'
-with open(ruta_config, "r") as archivo:
-    config = yaml.safe_load(archivo)
+DAY = int(str(fecha).replace('-', '')[:8])
 
 # Función principal
 def main():
-    logger = config_logging(dia)
+    """General logic"""
+
+    logger = config_logging(DAY)
     logger.info('Empieza la ejecución')
 
-    print('Hello World')
-
-    logger.info('Generando bases...')
-    generacion_bases.run(config, fecha)
+    load_records.run()
 
 # Entry Point
 if __name__ == '__main__':
