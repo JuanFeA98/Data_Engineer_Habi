@@ -5,6 +5,7 @@
 *.pptx
 *.txt
 *.pdf
+*.xml
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
