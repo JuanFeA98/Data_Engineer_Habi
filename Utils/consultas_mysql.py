@@ -1,6 +1,7 @@
 "Module for MYSQL connection"
 import os
 
+import pandas as pd
 import mysql.connector
 from dotenv import load_dotenv
 
@@ -24,3 +25,9 @@ def load_records(df, query_insert):
     data = [tuple(row) for row in df.itertuples(index=False, name=None)]
     cursor.executemany(query_insert, data)
     conn.commit()
+
+def get_data(query_get):
+    cursor.execute(query_get)
+    columns = [col[0] for col in cursor.description]  # Obtener nombres de columnas
+    results = cursor.fetchall()
+    return pd.DataFrame(results, columns=columns)
