@@ -2,3 +2,4 @@ pandas
 mysql
 mysql-connector-python
 python-dotenv
+seaborn
