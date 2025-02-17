@@ -30,6 +30,7 @@ def run(fecha: datetime, df_load: pd.DataFrame, query: str):
             raise
 
         try:
+            cst.truncate_table(query)
             cst.load_records(df_load, query_insert)
             logger.info("Data successfully loaded into the database.")
         except Exception as e:

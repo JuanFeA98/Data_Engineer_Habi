@@ -26,8 +26,14 @@ def load_records(df, query_insert):
     cursor.executemany(query_insert, data)
     conn.commit()
 
-def get_data(query_get):
+def get_data(query_get: str):
+    """Function to read records from database"""
     cursor.execute(query_get)
     columns = [col[0] for col in cursor.description]  # Obtener nombres de columnas
     results = cursor.fetchall()
     return pd.DataFrame(results, columns=columns)
+
+def truncate_table(table_name: str):
+    """Function to truncate tables on database"""
+    query_truncate = f"TRUNCATE TABLE {table_name}"
+    cursor.execute(query_truncate)
